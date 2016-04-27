@@ -1,0 +1,61 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Квадратне рівняння</title>
+		<script src="script.js"></script>
+	</head>
+	<body>
+		<div align="center">
+			<h1>Повне квадратне рівняння<br> ax&sup2; + bx + c = 0, де a ≠ 0</h1>
+			<hr>
+			<form name="cell" action="javascript:cell_equation()">
+			a <input name="cell_a" type="text" size="2">
+			b <input name="cell_b" type="text" size="2">
+			c <input name="cell_c" type="text" size="2">
+			<input type="submit" value="порахувати">
+			</form>
+			<hr>
+			Результат: <span id="cell_sol">ведіть дані і натисніть "порахувати"</span>
+		</div>
+		<script>
+		function cell_equation() {
+		  	var a = document.cell.cell_a.value;
+		  	var b = document.cell.cell_b.value;
+		  	var c = document.cell.cell_c.value;
+		  	var sol = document.getElementById("cell_sol");
+
+		  	var d = b * b - 4 * a * c;
+		  	
+		  	if ( d < 0 ) {
+				string = "не має дійсних коренів, є два комплексних кореня<br>x<sub>1</sub> = (";
+				string += - b / ( 2 * a );
+				string += ", ";
+				string += Math.sqrt( -d ) / ( 2 * a );
+				string += "), x<sub>2</sub> = (";
+				string += - b / ( 2 * a);
+				string += ", ";
+				string += - Math.sqrt( -d ) / ( 2 * a );
+				string += ").";
+				} 
+		  	else {
+		  	
+			  if ( d == 0 ) {
+				string = "два однакових дійсних коренів:<br>x<sub>1</sub> = x<sub>2</sub> = ";
+				string += -b / ( 2 * a );
+				string += ".";
+				} 
+			  
+			  else {
+				string = "два різних дійсних коренів:<br>x<sub>1</sub> = ";
+				string += -b / ( 2 * a ) - Math.sqrt( d ) / ( 2 * a );
+				string += ", x<sub>2</sub> = ";
+				string += -b / ( 2 * a ) + Math.sqrt( d ) / ( 2 * a );
+				string += ".";
+			  	}
+		  	}
+		  sol.innerHTML = string;
+		}
+		</script>
+	</body>
+</html>
